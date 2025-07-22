@@ -6,6 +6,7 @@ use App\Http\Requests\Order\StoreOrderRequest;
 use App\Services\Order\StoreOrderService;
 use Illuminate\Http\JsonResponse;
 use App\Factories\UserProductDTOFactory;
+use App\Services\Order\ShowOrderService;
 
 class OrderController extends Controller
 {
@@ -16,9 +17,10 @@ class OrderController extends Controller
         return response()->json(['message' => 'order created!', 'data' => ['id' => $order->id, 'status' => $order->status]], 201);
     }
 
-    public function index(int $id)
+    public function index(int $id, ShowOrderService $service)
     {
-
+        $orders = $service->show($id);
+        return $orders;
     }
 }
 
