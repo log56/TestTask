@@ -7,6 +7,8 @@ use App\Models\Category;
 use App\Models\Order;
 class Product extends Model
 {
+    public $timestamps = false;
+
     public function category()
     {
         return $this->belongsTo(Category::class);

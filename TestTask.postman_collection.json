@@ -1,0 +1,476 @@
+{
+	"info": {
+		"_postman_id": "32f4f5a1-b45c-4172-90f2-c6ef698e9a36",
+		"name": "TestTask",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46351576",
+		"_collection_link": "https://nikita-7975665.postman.co/workspace/Nikita's-Workspace~99ed49c7-8a05-40a2-8311-d38e8077b396/collection/46351576-32f4f5a1-b45c-4172-90f2-c6ef698e9a36?action=share&source=collection_link&creator=46351576"
+	},
+	"item": [
+		{
+			"name": "Registration",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"test\",\n    \"phone\": \"+72494234\",\n    \"adress\": \"test\",\n    \"password\": \"test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register"
+					]
+				},
+				"description": "### Register User API\n\nThis API endpoint allows a user to register by providing their details.\n\n#### Request\n\n- **Method:** POST\n    \n- **URL:** `http://127.0.0.1:8000/api/register`\n    \n\n#### Request Body\n\nThe request body must be in JSON format and include the following parameters:\n\n- `username` (string): The desired username for the new account.\n    \n- `phone` (string): The phone number associated with the account, formatted as a string.\n    \n- `adress` (string): The address of the user.\n    \n- `password` (string): The password for the account.\n    \n\n#### Expected Response\n\nThe response will typically include a success message or an error message indicating the result of the registration attempt.\n\n#### Notes\n\n- Ensure that all fields are filled correctly to avoid validation errors.\n    \n- The phone number should be in a valid format.\n    \n- Passwords should meet any specified security requirements."
+			},
+			"response": [
+				{
+					"name": "Registration",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"test\",\n    \"phone\": \"+72494234\",\n    \"adress\": \"test\",\n    \"password\": \"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = pm.response.json();",
+							"pm.environment.set(\"token\", json.access_token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"test\",\n    \"password\": \"test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					]
+				},
+				"description": "## Login API\n\nThis endpoint is used to authenticate a user by logging them into the system. It accepts a username and password, and upon successful authentication, it returns a response indicating the result of the login attempt.\n\n### Request\n\n- **Method**: POST\n    \n- **URL**: `http://127.0.0.1:8000/api/login`\n    \n- **Content-Type**: application/json\n    \n\n#### Request Body\n\nThe request body must be in JSON format and should include the following parameters:\n\n- `username` (string): The username of the user attempting to log in.\n    \n- `password` (string): The password associated with the provided username.\n    \n\n**Example Request Body**:\n\n``` json\n{\n  \"username\": \"test\",\n  \"password\": \"test\"\n}\n\n ```\n\n### Response\n\nThe response will contain information regarding the success or failure of the login attempt. The structure of the response may include:\n\n- `success` (boolean): Indicates whether the login was successful or not.\n    \n- `message` (string): A message providing additional information about the login attempt.\n    \n- `token` (string, optional): A token that may be used for subsequent authenticated requests if the login is successful.\n    \n\n**Example Response**:\n\n``` json\n{\n  \"success\": true,\n  \"message\": \"Login successful\",\n  \"token\": \"abc123xyz\"\n}\n\n ```\n\n### Notes\n\n- Ensure that the username and password are correctly formatted and valid.\n    \n- Handle the response appropriately based on the success status."
+			},
+			"response": [
+				{
+					"name": "Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"test\",\n    \"password\": \"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Get Products",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/products",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"products"
+					]
+				},
+				"description": "### API Endpoint: Get Products\n\nThis endpoint retrieves a list of products from the server. It is designed to provide users with detailed information about each product available in the inventory.\n\n#### Request\n\n- **Method**: GET\n    \n- **URL**: `http://127.0.0.1:8000/api/products`\n    \n\nNo input parameters are required for this request.\n\n#### Response\n\nUpon a successful request, the server responds with a status code of **200** and returns a JSON object containing an array of product data. The structure of the response is as follows:\n\n``` json\n{\n  \"data\": [\n    {\n      \"id\": 0,\n      \"name\": \"\",\n      \"description\": \"\",\n      \"category_id\": 0,\n      \"price\": 0,\n      \"availible\": 0,\n      \"category\": {\n        \"id\": 0,\n        \"name\": \"\",\n        \"description\": \"\"\n      }\n    }\n  ]\n}\n\n ```\n\n- **data**: An array of product objects.\n    \n    - **id**: Unique identifier for the product.\n        \n    - **name**: Name of the product.\n        \n    - **description**: Description of the product.\n        \n    - **category_id**: Identifier for the category the product belongs to.\n        \n    - **price**: Price of the product.\n        \n    - **availible**: Availability status of the product.\n        \n    - **category**: An object containing details about the product's category.\n        \n        - **id**: Unique identifier for the category.\n            \n        - **name**: Name of the category.\n            \n        - **description**: Description of the category.\n            \n\nThis endpoint is useful for fetching product listings and can be utilized in applications requiring product data display."
+			},
+			"response": [
+				{
+					"name": "Get Products",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"test\",\n    \"password\": \"test\"\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/products",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"logout"
+					]
+				},
+				"description": "## Logout API\n\nThis endpoint is used to log out a user from the application. By sending a POST request to this endpoint, the user session will be terminated, and the user will be logged out.\n\n### Request Parameters\n\nThe request body must contain the following parameters:\n\n- **user_id** (string): The unique identifier of the user who is logging out. This parameter is essential for identifying the session to be terminated.\n    \n- **session_token** (string): The token associated with the user's session. This token is required to authenticate the logout request.\n    \n\n### Response Structure\n\nUpon a successful logout, the API will return a response with the following structure:\n\n- **status** (string): Indicates the success or failure of the logout operation. A successful logout will return a status of \"success\".\n    \n- **message** (string): A descriptive message providing additional information about the logout operation. For example, it may confirm that the user has been successfully logged out.\n    \n\n### Example Response\n\n``` json\n{\n    \"status\": \"success\",\n    \"message\": \"User has been logged out successfully.\"\n}\n\n ```\n\nEnsure that the request is made with the correct parameters to successfully log out the user."
+			},
+			"response": [
+				{
+					"name": "Logout",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/logout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"user_id\": 1,\n  \"comment\": \"test\",\n  \"products\": [\n    { \"id\": 1, \"quantity\": 3 },\n    { \"id\": 2, \"quantity\": 1 }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/orders",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"orders"
+					]
+				},
+				"description": "## Add Order\n\nThis endpoint allows users to create a new order by submitting the necessary details in the request body.\n\n### Request\n\n**Method:** POST  \n**URL:** `http://127.0.0.1:8000/api/orders`\n\n#### Request Body Format\n\nThe request body must be in JSON format and should include the following parameters:\n\n- **user_id** (integer): The ID of the user placing the order.\n    \n- **comment** (string): An optional comment or note regarding the order.\n    \n- **products** (array): A list of products being ordered. Each product must include:\n    \n    - **id** (integer): The unique identifier of the product.\n        \n    - **quantity** (integer): The quantity of the product being ordered.\n        \n\n**Example Request Body:**\n\n``` json\n{\n  \"user_id\": 1,\n  \"comment\": \"test\",\n  \"products\": [\n    {\n      \"id\": 1,\n      \"quantity\": 3\n    }\n  ]\n}\n\n ```\n\n### Response\n\nUpon a successful request, the server will respond with a confirmation of the order creation. The structure of the response typically includes:\n\n- **order_id** (integer): The unique identifier for the newly created order.\n    \n- **status** (string): A message indicating the success of the order creation.\n    \n- **created_at** (string): A timestamp indicating when the order was created.\n    \n\nPlease ensure that the request body adheres to the specified format for successful processing."
+			},
+			"response": [
+				{
+					"name": "Order",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": 1,\n  \"comment\": \"test\",\n  \"products\": [\n    { \"id\": 1, \"quantity\": 3 },\n    { \"id\": 2, \"quantity\": 1 }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/orders",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"orders"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Get Orders",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/users/1/orders",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users",
+						"1",
+						"orders"
+					]
+				},
+				"description": "## Get User Orders\n\nThis endpoint retrieves a list of orders associated with a specific user identified by their ID. The request is made to the URL `http://127.0.0.1:8000/api/users/{user_id}/orders`, where `{user_id}` should be replaced with the actual ID of the user whose orders are being queried.\n\n### Request\n\n- **Method**: GET\n    \n- **URL**: `http://127.0.0.1:8000/api/users/{user_id}/orders`\n    \n\n### Response\n\nOn a successful request, the server responds with a status code of `200` and returns a JSON object containing the following structure:\n\n``` json\n{\n  \"data\": [\n    {\n      \"id\": 0,\n      \"user_id\": 0,\n      \"status\": \"\",\n      \"comment\": \"\",\n      \"total_price\": 0,\n      \"created_at\": \"\",\n      \"updated_at\": \"\",\n      \"products\": [\n        {\n          \"id\": 0,\n          \"name\": \"\",\n          \"price\": 0,\n          \"pivot\": {\n            \"order_id\": 0,\n            \"product_id\": 0,\n            \"quantity\": 0,\n            \"unit_price\": \"\"\n          }\n        }\n      ]\n    }\n  ]\n}\n\n ```\n\n### Response Structure\n\n- **data**: An array of order objects.\n    \n    - **id**: The unique identifier for the order.\n        \n    - **user_id**: The ID of the user associated with the order.\n        \n    - **status**: The current status of the order (e.g., pending, completed).\n        \n    - **comment**: Any comments associated with the order.\n        \n    - **total_price**: The total price of the order.\n        \n    - **created_at**: The timestamp when the order was created.\n        \n    - **updated_at**: The timestamp when the order was last updated.\n        \n    - **products**: An array of products included in the order.\n        \n        - **id**: The unique identifier for the product.\n            \n        - **name**: The name of the product.\n            \n        - **price**: The price of the product.\n            \n        - **pivot**: An object containing additional details about the product in the order.\n            \n            - **order_id**: The ID of the order.\n                \n            - **product_id**: The ID of the product.\n                \n            - **quantity**: The quantity of the product ordered.\n                \n            - **unit_price**: The price per unit of the product.\n                \n\nThis endpoint is useful for retrieving detailed information about a user's orders, including the status, total price, and the products included in each order."
+			},
+			"response": [
+				{
+					"name": "Get Orders",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/users/1/orders",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								"1",
+								"orders"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	]
+}
