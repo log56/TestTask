@@ -21,5 +21,5 @@ To run project do following:
 6. run server
    php artisan serve
 7. download and import postman collection 
-   [download](.TestTask.postman_collection.json)
+   [download](TestTask.postman_collection.json)
     
