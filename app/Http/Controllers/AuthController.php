@@ -9,7 +9,7 @@ class AuthController extends Controller
 {
     public function login(): JsonResponse
     {
-        $credentials = response(['username', ['password']]);
+        $credentials = request(['username', 'password']);
         if (! $token = Auth::attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
