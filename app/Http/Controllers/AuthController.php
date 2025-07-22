@@ -20,7 +20,7 @@ class AuthController extends Controller
     public function logout(): JsonResponse
     {
        Auth::logout();
-       return response()->json(['lohhed out']);
+       return response()->json(['logged out']);
     }
 
     public function respondWithToken($token)
@@ -28,7 +28,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => 48000,
+            'expires_in' => 3600,
         ]);
     }
 }
